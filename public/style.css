@@ -1,0 +1,508 @@
+/* public/style.css */
+/* Solstice Signal Retro Cyberpunk Theme */
+
+:root {
+  --bg-color: #050505;
+  --panel-bg: rgba(10, 15, 10, 0.7);
+  --panel-border: rgba(0, 255, 102, 0.2);
+  --panel-border-glow: rgba(0, 255, 102, 0.05);
+  
+  --text-primary: #00ff66;
+  --text-glow: 0 0 8px rgba(0, 255, 98, 0.6);
+  --text-dim: #008833;
+  
+  --alert-color: #ffb300;
+  --alert-glow: 0 0 8px rgba(255, 179, 0, 0.6);
+  
+  --error-color: #ff3333;
+  --error-glow: 0 0 8px rgba(255, 51, 51, 0.6);
+
+  --font-stack: 'Share Tech Mono', 'Courier New', Courier, monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-stack);
+  overflow-x: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-shadow: var(--text-glow);
+}
+
+/* CRT Scanline Overlay Effect */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(18, 30, 18, 0) 50%, rgba(0, 0, 0, 0.8) 100%);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 255, 102, 0.06) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9998;
+  animation: scroll-scanlines 20s linear infinite;
+}
+
+@keyframes scroll-scanlines {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+/* Screen flicker simulation */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.03);
+  opacity: 0;
+  z-index: 9997;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.15; }
+  50% { opacity: 0.25; }
+  100% { opacity: 0.18; }
+}
+
+/* Overlay Boot Screen Gate */
+.overlay-gate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #020402;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.8s ease;
+}
+
+.boot-terminal-box {
+  width: 90%;
+  max-width: 600px;
+  padding: 40px;
+  background-color: rgba(5, 10, 5, 0.9);
+  border: 2px solid var(--error-color);
+  box-shadow: 0 0 20px rgba(255, 51, 51, 0.2), inset 0 0 20px rgba(255, 51, 51, 0.1);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.warning-header {
+  color: var(--error-color);
+  font-size: 24px;
+  margin-bottom: 25px;
+  text-shadow: var(--error-glow);
+  font-weight: bold;
+}
+
+.boot-text {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.blink {
+  animation: text-blink 1.2s infinite;
+}
+
+@keyframes text-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Dashboard Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  padding: 15px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* System Header styles */
+.system-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 0 10px var(--panel-border-glow);
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.sys-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sys-status {
+  font-size: 16px;
+}
+
+.text-alert {
+  color: var(--alert-color);
+  text-shadow: var(--alert-glow);
+}
+
+.text-locked {
+  color: var(--text-primary);
+  text-shadow: var(--text-glow);
+}
+
+/* Telemetry Screen Styles */
+.telemetry-screen {
+  flex: 1.2;
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed var(--panel-border);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--text-dim);
+  text-shadow: none;
+}
+
+.divergence-readout {
+  color: var(--error-color);
+  text-shadow: var(--error-glow);
+}
+
+.canvas-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgba(0, 5, 0, 0.4);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  overflow: hidden;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Bottom Dashboard Grid */
+.dashboard-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 12px;
+  min-height: 280px;
+}
+
+.panel {
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+.panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.instructions-text {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-shadow: none;
+  margin-bottom: 15px;
+}
+
+/* Cyber Sliders Control Bay */
+.control-group {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.control-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.target-hint {
+  font-size: 11px;
+  color: var(--text-dim);
+  text-align: right;
+  margin-top: 2px;
+  text-shadow: none;
+}
+
+/* Custom CSS range input styling */
+.cyber-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  border-radius: 3px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.cyber-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--text-primary);
+  border: 1px solid #000;
+  box-shadow: var(--text-glow);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.cyber-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.cyber-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  background: var(--text-primary);
+  border: 1px solid #000;
+  box-shadow: var(--text-glow);
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.cyber-slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Lock State Progress Bar */
+.lock-indicator-box {
+  margin-top: 10px;
+  border-top: 1px dashed rgba(0, 255, 102, 0.2);
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+#lockStateText {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--text-primary);
+  box-shadow: var(--text-glow);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.progress-bar.locked {
+  background-color: var(--alert-color);
+  box-shadow: var(--alert-glow);
+}
+
+/* Terminal Console Layout */
+.terminal-panel {
+  border-color: var(--panel-border);
+}
+
+.terminal-log {
+  flex: 1;
+  background: rgba(0, 5, 0, 0.3);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  border-radius: 4px;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  max-height: 220px;
+}
+
+.log-entry {
+  margin-bottom: 8px;
+  white-space: pre-line;
+}
+
+.log-entry.system {
+  color: var(--alert-color);
+  text-shadow: var(--alert-glow);
+}
+
+.log-entry.error {
+  color: var(--error-color);
+  text-shadow: var(--error-glow);
+}
+
+.log-entry.user {
+  color: #fff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.log-entry.remnant {
+  color: var(--text-primary);
+  text-shadow: var(--text-glow);
+}
+
+/* Console Input Form */
+.console-input-area {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 255, 102, 0.05);
+  border: 1px solid var(--panel-border);
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.prompt-char {
+  color: var(--text-primary);
+  font-size: 18px;
+  margin-right: 8px;
+  user-select: none;
+}
+
+#userInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--font-stack);
+  font-size: 14px;
+  outline: none;
+  text-shadow: 0 0 5px rgba(255,255,255,0.5);
+}
+
+#userInput:disabled {
+  color: var(--text-dim);
+  text-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Glow Custom Buttons */
+.terminal-btn {
+  background: transparent;
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  font-family: var(--font-stack);
+  font-size: 14px;
+  padding: 6px 16px;
+  cursor: pointer;
+  text-shadow: var(--text-glow);
+  box-shadow: inset 0 0 5px rgba(0, 255, 102, 0.2);
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.terminal-btn:hover:not(:disabled) {
+  background: var(--text-primary);
+  color: #000;
+  box-shadow: var(--text-glow);
+}
+
+.terminal-btn:disabled {
+  border-color: var(--text-dim);
+  color: var(--text-dim);
+  text-shadow: none;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+#bootBtn {
+  border-color: var(--error-color);
+  color: var(--error-color);
+  text-shadow: var(--error-glow);
+  box-shadow: inset 0 0 5px rgba(255, 51, 51, 0.2);
+}
+
+#bootBtn:hover {
+  background: var(--error-color);
+  color: #000;
+  box-shadow: var(--error-glow);
+}
+
+/* Custom Scrollbar for Terminal Log */
+.terminal-log::-webkit-scrollbar {
+  width: 6px;
+}
+
+.terminal-log::-webkit-scrollbar-track {
+  background: rgba(0, 5, 0, 0.2);
+}
+
+.terminal-log::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 3px;
+}
+
+.terminal-log::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}

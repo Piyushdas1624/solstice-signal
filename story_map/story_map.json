@@ -1,0 +1,172 @@
+{
+  "project": "Solstice Signal (Tuning into the Dark) - MVP & Polish Map",
+  "releases": [
+    {"name": "Release 1", "description": "MVP Core Elements (Functional calibration & conversation)"},
+    {"name": "Release 2", "description": "Audio & Visual Polish (High-quality Edge TTS & CRT VFX)"}
+  ],
+  "epics": [
+    {
+      "name": "Signal Tuning System",
+      "features": [
+        {
+          "name": "Canvas Monitor Screen",
+          "stories": [
+            {
+              "name": "Draw target sine wave",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 3,
+              "description": "Renders a steady green target wave indicating resonance target."
+            },
+            {
+              "name": "Draw player modulated wave",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 3,
+              "description": "Renders player wave modulated by frequency, resonance, and phase sliders."
+            },
+            {
+              "name": "Visual wave merge lock",
+              "priority": "should",
+              "release": "Release 2",
+              "points": 2,
+              "description": "Fades waves together into a single bright line when calibration is within 2% margin."
+            }
+          ]
+        },
+        {
+          "name": "Dipole Calibration Bay",
+          "stories": [
+            {
+              "name": "Frequency, Resonance, Phase Sliders",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 2,
+              "description": "Three HTML range sliders to adjust signal calibration values."
+            },
+            {
+              "name": "Cyberpunk slider styling",
+              "priority": "should",
+              "release": "Release 2",
+              "points": 2,
+              "description": "Custom CSS range input styling with glowing tracks and thumb indicators."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Diagnostic Onboarding",
+      "features": [
+        {
+          "name": "Autoplay bypass lock screen",
+          "stories": [
+            {
+              "name": "Full-screen Click Overlay",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 2,
+              "description": "Blocks UI with alert warning to click and activate the Web Audio engine."
+            }
+          ]
+        },
+        {
+          "name": "Array Calibration Prompts",
+          "stories": [
+            {
+              "name": "Step-by-step diagnostic text logs",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 2,
+              "description": "Prints logs guiding user on how to calibrate the array to unlock telemetry."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dialogue Terminal Interface",
+      "features": [
+        {
+          "name": "Monospace Text Log",
+          "stories": [
+            {
+              "name": "Typewriter terminal printout",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 3,
+              "description": "Prints text character-by-character to simulate an ancient terminal."
+            },
+            {
+              "name": "Blinking cursor & input box",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 2,
+              "description": "Console command line accepting keyboard user inputs."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Speech Synthesis",
+      "features": [
+        {
+          "name": "Browser Native SpeechSynthesis",
+          "stories": [
+            {
+              "name": "Offline TTS fallback",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 2,
+              "description": "Speaks text using client-side Web Speech API with low pitch and rate."
+            }
+          ]
+        },
+        {
+          "name": "Edge Neural TTS Integration",
+          "stories": [
+            {
+              "name": "Backend Node.js tts API route",
+              "priority": "should",
+              "release": "Release 2",
+              "points": 4,
+              "description": "Dynamic backend synthesis route returning Edge-TTS audio stream."
+            },
+            {
+              "name": "Pre-rendered initial audio greetings",
+              "priority": "should",
+              "release": "Release 2",
+              "points": 3,
+              "description": "Initial handshakes loaded from static mp3 files for highest neural quality."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gemini Core Integration",
+      "features": [
+        {
+          "name": "Secure Vercel Chat Handler",
+          "stories": [
+            {
+              "name": "Vercel proxy serverless function",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 3,
+              "description": "Post endpoint proxying queries to Gemini securely to hide API key."
+            },
+            {
+              "name": "Remnant S-1954 system instructions",
+              "priority": "must",
+              "release": "Release 1",
+              "points": 2,
+              "description": "System instructions making Gemini speak as a lonely digital remnant of Turing."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

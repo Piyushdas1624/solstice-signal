@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solstice Signal (Tuning into the Dark)</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+  <meta name="description" content="An atmospheric retro-cyberpunk terminal interface to crack the handshake of an ancient cryptographic array and communicate with a 72-year-old digital consciousness.">
+  
+  <!-- Retro futuristic typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- CRT Screen Effect Container -->
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+
+  <!-- Boot & Onboarding Screen Mask -->
+  <div id="bootOverlay" class="overlay-gate">
+    <div class="boot-terminal-box">
+      <div class="warning-header">⚠️ WARNING: TELEMETRY LINK DIVERGED</div>
+      <div class="boot-text">
+        <p>[ PROJECT S-1954: CLASSIFIED ELECTROMAGNETIC RECEIVER ]</p>
+        <p>RE-ENERGIZED BY SOLAR APEX FLUX ON JUNE 21, 2026.</p>
+        <p class="blink">MUTED STATIC DETECTED. CLICK SCREEN TO ACTIVATE RECEIVER ARRAY.</p>
+      </div>
+      <button id="bootBtn" class="terminal-btn">INITIALIZE ARRAY</button>
+    </div>
+  </div>
+
+  <!-- Main Game Dashboard -->
+  <div class="app-container hidden">
+    <!-- Header Status Panel -->
+    <header class="system-header">
+      <div class="sys-title">📡 S-1954 CRYPTO RELAY</div>
+      <div class="sys-status">SYS_STATUS: <span id="statusIndicator" class="text-alert">DIVERGED</span></div>
+      <div class="sys-stats">
+        <span>SOLAR FLUX: 948 W/m²</span> | 
+        <span>SOLSTICE DECAY: <span id="decayTimer">60.00s</span></span>
+      </div>
+    </header>
+
+    <!-- Visual Telemetry & Wave Screen -->
+    <main class="telemetry-screen">
+      <div class="panel-header">
+        <span>[ TELEMETRY WAVE MONITOR ]</span>
+        <span class="divergence-readout">DIVERGENCE: <span id="divergenceVal">87.5%</span></span>
+      </div>
+      <div class="canvas-container">
+        <canvas id="signalCanvas"></canvas>
+      </div>
+    </main>
+
+    <!-- Grid Layout for Sliders and Terminal Log -->
+    <div class="dashboard-grid">
+      <!-- Control Bay Panel -->
+      <section class="panel control-bay">
+        <div class="panel-header">[ DIPOLE TUNING BAY ]</div>
+        <div class="panel-content">
+          <p class="instructions-text">Calibrate the dipole sliders to match target waves and establish handshake lock.</p>
+          
+          <div class="control-group">
+            <div class="control-label">
+              <span>FREQUENCY</span>
+              <span id="freqVal">15.0</span>
+            </div>
+            <input type="range" id="freqSlider" min="10" max="100" value="15" step="0.5" class="cyber-slider">
+            <span class="target-hint">Target: 42.0</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <span>RESONANCE</span>
+              <span id="resVal">90.0</span>
+            </div>
+            <input type="range" id="resSlider" min="10" max="100" value="90" step="0.5" class="cyber-slider">
+            <span class="target-hint">Target: 88.0</span>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <span>SOLAR PHASE</span>
+              <span id="phaseVal">45°</span>
+            </div>
+            <input type="range" id="phaseSlider" min="0" max="360" value="45" step="1" class="cyber-slider">
+            <span class="target-hint">Target: 12°</span>
+          </div>
+          
+          <div class="lock-indicator-box">
+            <div id="lockStateText">HANDSHAKE: LOCKED OUT</div>
+            <div class="progress-bar-container">
+              <div id="lockProgress" class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terminal Dialogue Panel -->
+      <section class="panel terminal-panel">
+        <div class="panel-header">[ CORE DIALOGUE CONSOLE ]</div>
+        <div class="panel-content">
+          <div id="terminalLog" class="terminal-log">
+            <!-- Dynamic logs appear here -->
+          </div>
+          
+          <form id="consoleForm" class="console-input-area" autocomplete="off">
+            <span class="prompt-char">&gt;</span>
+            <input type="text" id="userInput" placeholder="ARRAY LOCKED. REALIGN DIPOLES..." disabled>
+            <button type="submit" id="actionBtn" class="terminal-btn" disabled>SEND</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

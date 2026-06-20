@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solstice Signal (Tuning into the Dark) - MVP &amp; Polish Map — User Story Map</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,
+"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:#f1f5f9;color:#1e293b;
+line-height:1.5;min-height:100vh}
+.container{max-width:100%;padding:20px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;
+margin-bottom:16px;gap:12px}
+h1{font-size:1.5rem;font-weight:700;color:#0f172a}
+.meta{font-size:.8rem;color:#64748b}
+.legend{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.legend-item{display:flex;align-items:center;gap:4px;font-size:.78rem}
+.legend-dot{width:12px;height:12px;border-radius:3px}
+.stats-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 16px;
+background:#fff;border-radius:8px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);
+font-size:.82rem}
+.stat-item b{color:#0f172a}
+.stat-sep{color:#cbd5e1;margin:0 2px}
+.stat-badge{padding:2px 8px;border-radius:4px;font-size:.78rem;font-weight:500}
+.map-scroll{overflow-x:auto;padding-bottom:16px}
+.map-inner{min-width:1680px}
+.map-row{display:flex}
+.epic-cell{color:#fff;font-weight:700;font-size:.92rem;padding:10px 12px;text-align:center;
+border-radius:6px 6px 0 0;margin-right:1px}
+.feat-cell{background:#fff;font-weight:600;font-size:.82rem;padding:8px 10px;text-align:center;
+border-right:1px solid #e2e8f0;margin-bottom:0}
+.release-section{margin-top:0}
+.release-divider{position:relative;display:flex;align-items:center;margin:14px 0 8px}
+.release-line{flex:1;height:2px;background:repeating-linear-gradient(
+90deg,#94a3b8 0,#94a3b8 6px,transparent 6px,transparent 12px)}
+.release-badge{position:absolute;left:0;background:#fff;padding:2px 14px;border-radius:12px;
+font-size:.82rem;font-weight:700;color:#334155;border:2px solid #94a3b8;white-space:nowrap}
+.release-badge .rel-desc{font-weight:400;color:#64748b;font-size:.78rem}
+.stories-row{gap:1px}
+.story-col{padding:4px 4px 8px;min-height:40px;display:flex;flex-direction:column;gap:6px}
+.story-card{border-radius:6px;padding:8px 10px;cursor:default;transition:box-shadow .15s,
+transform .15s;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.story-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.1);transform:translateY(-1px)}
+.card-title{font-size:.82rem;font-weight:600;color:#1e293b;margin-bottom:2px}
+.card-desc{font-size:.72rem;color:#64748b;margin-bottom:4px;display:-webkit-box;
+-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-footer{display:flex;justify-content:space-between;align-items:center}
+.card-pri{font-size:.7rem;font-weight:600}
+.card-pts{font-size:.7rem;color:#475569;background:#f1f5f9;padding:1px 6px;border-radius:3px}
+.empty-slot{min-height:20px}
+.print-btn{position:fixed;bottom:20px;right:20px;padding:8px 20px;background:#6366f1;color:#fff;
+border:none;border-radius:8px;font-size:.85rem;cursor:pointer;box-shadow:0 2px 8px rgba(99,102,241,.3);
+z-index:100}
+.print-btn:hover{background:#4f46e5}
+@media print{
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .container{padding:8px}
+  .print-btn{display:none}
+  .map-scroll{overflow:visible}
+  @page{size:A3 landscape;margin:10mm}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div>
+    <h1>Solstice Signal (Tuning into the Dark) - MVP &amp; Polish Map</h1>
+    <div class="meta">User Story Map &middot; Generated 2026-06-20 23:13</div>
+  </div>
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot" style="background:#dc2626"></span>Must Have</span><span class="legend-item"><span class="legend-dot" style="background:#ea580c"></span>Should Have</span><span class="legend-item"><span class="legend-dot" style="background:#2563eb"></span>Could Have</span><span class="legend-item"><span class="legend-dot" style="background:#6b7280"></span>Won&#x27;t Have</span>
+  </div>
+</header>
+<div class="stats-bar">
+<span class="stat-item"><b>14</b> Stories</span>
+<span class="stat-item"><b>35</b> Points</span>
+<span class="stat-sep">|</span>
+<span class="stat-badge" style="background:#fef2f2;color:#dc2626;border:1px solid #fca5a5">Must Have 10 (24pt)</span>
+<span class="stat-badge" style="background:#fff7ed;color:#ea580c;border:1px solid #fdba74">Should Have 4 (11pt)</span>
+<span class="stat-badge" style="background:#eff6ff;color:#2563eb;border:1px solid #93c5fd">Could Have 0</span>
+<span class="stat-badge" style="background:#f9fafb;color:#6b7280;border:1px solid #d1d5db">Won&#x27;t Have 0</span>
+<span class="stat-sep">|</span>
+<span class="stat-item">Release 1: <b>10</b></span>
+<span class="stat-item">Release 2: <b>4</b></span>
+</div>
+<div class="map-scroll">
+<div class="map-inner">
+  <div class="map-row epic-row-wrap"><div class="epic-cell" style="width:420px;background:#6366f1">Signal Tuning System</div><div class="epic-cell" style="width:420px;background:#8b5cf6">Diagnostic Onboarding</div><div class="epic-cell" style="width:210px;background:#06b6d4">Dialogue Terminal Interface</div><div class="epic-cell" style="width:420px;background:#10b981">Speech Synthesis</div><div class="epic-cell" style="width:210px;background:#f59e0b">Gemini Core Integration</div></div>
+  <div class="map-row feat-row-wrap"><div class="feat-cell" style="width:210px;border-top:3px solid #6366f1">Canvas Monitor Screen</div><div class="feat-cell" style="width:210px;border-top:3px solid #6366f1">Dipole Calibration Bay</div><div class="feat-cell" style="width:210px;border-top:3px solid #8b5cf6">Autoplay bypass lock screen</div><div class="feat-cell" style="width:210px;border-top:3px solid #8b5cf6">Array Calibration Prompts</div><div class="feat-cell" style="width:210px;border-top:3px solid #06b6d4">Monospace Text Log</div><div class="feat-cell" style="width:210px;border-top:3px solid #10b981">Browser Native SpeechSynthesis</div><div class="feat-cell" style="width:210px;border-top:3px solid #10b981">Edge Neural TTS Integration</div><div class="feat-cell" style="width:210px;border-top:3px solid #f59e0b">Secure Vercel Chat Handler</div></div>
+  <div class="release-section"><div class="release-divider"><div class="release-line"></div><div class="release-badge">Release 1 <span class="rel-desc">— MVP Core Elements (Functional calibration &amp; conversation)</span></div></div><div class="map-row stories-row"><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Renders a steady green target wave indicating resonance target."><div class="card-title">Draw target sine wave</div><div class="card-desc">Renders a steady green target wave indicating resonance target.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">3 pt</span></div></div><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Renders player wave modulated by frequency, resonance, and phase sliders."><div class="card-title">Draw player modulated wave</div><div class="card-desc">Renders player wave modulated by frequency, resonance, and phase sliders.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">3 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Three HTML range sliders to adjust signal calibration values."><div class="card-title">Frequency, Resonance, Phase Sliders</div><div class="card-desc">Three HTML range sliders to adjust signal calibration values.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Blocks UI with alert warning to click and activate the Web Audio engine."><div class="card-title">Full-screen Click Overlay</div><div class="card-desc">Blocks UI with alert warning to click and activate the Web Audio engine.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Prints logs guiding user on how to calibrate the array to unlock telemetry."><div class="card-title">Step-by-step diagnostic text logs</div><div class="card-desc">Prints logs guiding user on how to calibrate the array to unlock telemetry.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Prints text character-by-character to simulate an ancient terminal."><div class="card-title">Typewriter terminal printout</div><div class="card-desc">Prints text character-by-character to simulate an ancient terminal.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">3 pt</span></div></div><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Console command line accepting keyboard user inputs."><div class="card-title">Blinking cursor &amp; input box</div><div class="card-desc">Console command line accepting keyboard user inputs.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Speaks text using client-side Web Speech API with low pitch and rate."><div class="card-title">Offline TTS fallback</div><div class="card-desc">Speaks text using client-side Web Speech API with low pitch and rate.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="empty-slot"></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="Post endpoint proxying queries to Gemini securely to hide API key."><div class="card-title">Vercel proxy serverless function</div><div class="card-desc">Post endpoint proxying queries to Gemini securely to hide API key.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">3 pt</span></div></div><div class="story-card" style="border-left:4px solid #dc2626;background:#fef2f2" title="System instructions making Gemini speak as a lonely digital remnant of Turing."><div class="card-title">Remnant S-1954 system instructions</div><div class="card-desc">System instructions making Gemini speak as a lonely digital remnant of Turing.</div><div class="card-footer"><span class="card-pri" style="color:#dc2626">Must Have</span><span class="card-pts">2 pt</span></div></div></div></div></div><div class="release-section"><div class="release-divider"><div class="release-line"></div><div class="release-badge">Release 2 <span class="rel-desc">— Audio &amp; Visual Polish (High-quality Edge TTS &amp; CRT VFX)</span></div></div><div class="map-row stories-row"><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #ea580c;background:#fff7ed" title="Fades waves together into a single bright line when calibration is within 2% margin."><div class="card-title">Visual wave merge lock</div><div class="card-desc">Fades waves together into a single bright line when calibration is within 2% margin.</div><div class="card-footer"><span class="card-pri" style="color:#ea580c">Should Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #ea580c;background:#fff7ed" title="Custom CSS range input styling with glowing tracks and thumb indicators."><div class="card-title">Cyberpunk slider styling</div><div class="card-desc">Custom CSS range input styling with glowing tracks and thumb indicators.</div><div class="card-footer"><span class="card-pri" style="color:#ea580c">Should Have</span><span class="card-pts">2 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="empty-slot"></div></div><div class="story-col" style="width:210px"><div class="empty-slot"></div></div><div class="story-col" style="width:210px"><div class="empty-slot"></div></div><div class="story-col" style="width:210px"><div class="empty-slot"></div></div><div class="story-col" style="width:210px"><div class="story-card" style="border-left:4px solid #ea580c;background:#fff7ed" title="Dynamic backend synthesis route returning Edge-TTS audio stream."><div class="card-title">Backend Node.js tts API route</div><div class="card-desc">Dynamic backend synthesis route returning Edge-TTS audio stream.</div><div class="card-footer"><span class="card-pri" style="color:#ea580c">Should Have</span><span class="card-pts">4 pt</span></div></div><div class="story-card" style="border-left:4px solid #ea580c;background:#fff7ed" title="Initial handshakes loaded from static mp3 files for highest neural quality."><div class="card-title">Pre-rendered initial audio greetings</div><div class="card-desc">Initial handshakes loaded from static mp3 files for highest neural quality.</div><div class="card-footer"><span class="card-pri" style="color:#ea580c">Should Have</span><span class="card-pts">3 pt</span></div></div></div><div class="story-col" style="width:210px"><div class="empty-slot"></div></div></div></div>
+</div>
+</div>
+</div>
+<button class="print-btn" onclick="window.print()">&#128424; Print</button>
+</body>
+</html>
