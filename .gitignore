@@ -11,6 +11,13 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+# Custom skill folders to ignore
+dev-guide-generator/
+edge-tts/
+kimi-find-skills/
+product-spec-writer/
+story-map-builder/
+
 # Vercel output and temp files
 .vercel
 temp/
