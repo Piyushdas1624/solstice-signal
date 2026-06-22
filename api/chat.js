@@ -41,15 +41,9 @@ export default async function handler(req, res) {
       ];
     }
 
-    // Prepare payload with minimal thinking to prevent reasoning trace leak
+    // Prepare payload
     const payload = {
-      contents: contents,
-      generationConfig: {
-        thinkingConfig: {
-          thinkingBudget: 0,
-          thinkingLevel: 'MINIMAL'
-        }
-      }
+      contents: contents
     };
 
     if (systemInstruction) {
