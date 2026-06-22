@@ -60,9 +60,9 @@ export default async function handler(req, res) {
 
     // Try successive models in order of preferred availability
     const MODELS = [
-      'gemma-4-31b-it',
-      'gemma-4-31b',
       'gemini-3.1-flash',
+      'gemma-4-26b-it',
+      'gemma-4-26b',
       'gemini-2.5-flash',
       'gemini-3.5-flash'
     ];
