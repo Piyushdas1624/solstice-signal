@@ -41,9 +41,15 @@ export default async function handler(req, res) {
       ];
     }
 
-    // Prepare payload
+    // Prepare payload with minimal thinking to prevent reasoning trace leak
     const payload = {
-      contents: contents
+      contents: contents,
+      generationConfig: {
+        thinkingConfig: {
+          thinkingBudget: 0,
+          thinkingLevel: 'MINIMAL'
+        }
+      }
     };
 
     if (systemInstruction) {
@@ -78,8 +84,24 @@ export default async function handler(req, res) {
 
         if (response.ok) {
           const data = await response.json();
-          replyText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-          if (replyText) {
+          let rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          
+          if (rawText) {
+            // Robust regex cleanup to strip internal thoughts, thinking tags, or draft formatting
+            let cleanText = rawText
+              .replace(/<think>[\s\S]*?<\/think>/gi, '')
+              .replace(/<thought>[\s\S]*?<\/thought>/gi, '')
+              .replace(/^\*[\s\S]*?\*[\s\S]*?(?=\b[A-Z\d])/g, '') // Strips draft bullets or headings
+              .replace(/Draft \d[\s\S]*?:\s*/gi, '') // Strips "Draft 1:", "Draft 2:" prefixes
+              .trim();
+              
+            // If sanitization leaves it empty, revert to the original text cleanups
+            if (cleanText.length > 5) {
+              replyText = cleanText;
+            } else {
+              replyText = rawText;
+            }
+
             console.log(`✓ [Gemini Success] Handled successfully by model: "${model}"`);
             success = true;
             break;
