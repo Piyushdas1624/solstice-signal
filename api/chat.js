@@ -54,10 +54,11 @@ export default async function handler(req, res) {
 
     // Try successive models in order of preferred availability
     const MODELS = [
-      'gemini-3.5-flash',
-      'gemini-3.1-flash-lite',
+      'gemma-4-31b-it',
+      'gemma-4-31b',
+      'gemini-3.1-flash',
       'gemini-2.5-flash',
-      'gemini-2.0-flash'
+      'gemini-3.5-flash'
     ];
 
     let replyText = null;
